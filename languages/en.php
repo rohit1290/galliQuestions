@@ -1,5 +1,5 @@
 <?php
-$english = array(
+return array(
 
 	'questions' => "Questions",
 	'questions:answers' => 'Answers',
@@ -30,7 +30,7 @@ View and comment on the question:
 	'questions:delete:confirm' => "Are you sure you want to delete this?",
 	'questions:numbertodisplay' => 'Number of questions to display',
 	'questions:recent' => "Recent questions",
-	'river:create:object:questions' => '%s asked a question %s',
+	'river:object:questions:create' => '%s asked a question %s',
 	'river:comment:object:questions' => '%s posted an answer for the question %s',
 	'questions:river:annotate' => 'a comment on this ',
 	'questions:river:item' => 'an item',
@@ -56,14 +56,12 @@ View and comment on the question:
 	'questions:title' => 'Question',
 	'questions:description' => 'Description',
 	'questions:tags' => 'Tags',
-	
+
 	'questions:mark' => 'Mark as answer',
 	'questions:unmark' => 'Unmark answer',
-	'questions:acceptedanswer' => 'Accepted answer', 
+	'questions:acceptedanswer' => 'Accepted answer',
 	'questions:marksticky:success' => 'Succesfully marked as the answer.',
 	'questions:unmarksticky:success' => 'Succesfully removed the answer.',
-	
-	
-);
 
-add_translation('en', $english);
+
+);

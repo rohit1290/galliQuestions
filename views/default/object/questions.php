@@ -31,8 +31,8 @@ $comments_link = elgg_view('output/url', array(
 ));
 
 $metadata = elgg_view_menu('entity', array(
-	'entity' => $vars['entity'],
-	'handler' => 'questions',
+	'entity' => elgg_extract('entity', $vars),
+	'handler' => elgg_extract('handler', $vars),
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
 ));
@@ -60,16 +60,16 @@ if ($full && !elgg_in_context('gallery')) {
 	$description
 </div>
 HTML;
-	
-	$answer = elgg_get_entities_from_relationship(array('type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $questions->guid, 'inverse_relationship' => TRUE));
+
+	$answer = elgg_get_entities(array('type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $questions->guid, 'inverse_relationship' => TRUE));
 	if($answer){
 		$answer_entity = elgg_view_entity($answer[0]);
 		$header = elgg_echo('questions:acceptedanswer');
 		$body .= "	<div class='questions elgg-content mts selected-answer'>
 						<h3>$header</h3>
 						$answer_entity
-					</div>";	
-	}	
+					</div>";
+	}
 
 	echo elgg_view('object/elements/full', array(
 		'entity' => $questions,
@@ -97,6 +97,6 @@ HTML;
 	);
 	$params = $params + $vars;
 	$body = elgg_view('object/elements/summary', $params);
-	
+
 	echo elgg_view_image_block($owner_icon, $body);
 }
