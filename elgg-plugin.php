@@ -16,11 +16,11 @@ return [
 			'resource' => 'questions/all',
 		],
 		'owner:object:questions' => [
-			'path' => '/questions/owner',
+			'path' => '/questions/owner/{username}',
 			'resource' => 'questions/owner',
 		],
 		'friends:object:questions' => [
-			'path' => '/questions/friends',
+			'path' => '/questions/friends/{username}',
 			'resource' => 'questions/friends',
 		],
 		'view:object:questions' => [
