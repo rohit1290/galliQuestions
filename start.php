@@ -5,15 +5,7 @@ function questions_init() {
 
 	require_once __DIR__ ."/lib/questions.php";
 
-	// menus
-	// elgg_register_menu_item('site', array(
-	// 	'name' => 'questions',
-	// 	'text' => elgg_echo('questions'),
-	// 	'href' => 'questions/all'
-	// ));
-
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'questions_owner_block_menu');
-	// elgg_register_page_handler('questions', 'questions_page_handler');
 
 	elgg_extend_view('css/elgg', 'questions/css');
 	elgg_extend_view('js/elgg', 'questions/js');

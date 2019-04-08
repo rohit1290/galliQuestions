@@ -1,7 +1,7 @@
 Author information
 
  *	Elgg Questions plugin
- *	Author : Mahin Akbar | Team Webgalli
+ *	Author : Rohit Gupta | Mahin Akbar | Team Webgalli
  *	Team Webgalli | Elgg developers and consultants
  *	Web	: http://www.webgalli.com/
  *	Skype : 'team.webgalli'
