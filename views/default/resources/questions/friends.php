@@ -12,7 +12,7 @@ elgg_register_title_button();
 
 $title = elgg_echo('questions:friends');
 
-$content = elgg_list_entities_from_relationship(array(
+$content = elgg_list_entities(array(
 	'type' => 'object',
 	'subtype' => 'questions',
 	'full_view' => false,
