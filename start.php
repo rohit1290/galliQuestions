@@ -24,8 +24,6 @@ function questions_init() {
 	        'label' => elgg_echo('questions:enablequestions'),
 	]);
 
-	elgg_extend_view('groups/tool_latest', 'questions/group_module');
-
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'questions_answers_entity_menu_setup');
 }
 
