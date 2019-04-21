@@ -1,6 +1,7 @@
 <?php
 return array(
 
+	'collection:object:questions' => "Questions",
 	'questions' => "Questions",
 	'questions:answers' => 'Answers',
 	'questions:add' => "Ask questions",
