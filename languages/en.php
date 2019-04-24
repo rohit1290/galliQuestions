@@ -43,7 +43,8 @@ View and comment on the question:
 	'questions:nogroup' => 'This group does not have any questions yet',
 	'questions:more' => 'More questions',
 	'questions:no_title' => 'No title',
-	'questions:widget:description' => "Display your latest questions.",
+	'widget:questions:name' => "Questions",
+	'widget:questions:description' => "Display your latest questions.",
 
 	'questions:save:success' => "Your item was successfully added.",
 	'questions:delete:success' => "Your question was deleted.",

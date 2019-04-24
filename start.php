@@ -10,7 +10,10 @@ function questions_init() {
 	elgg_extend_view('css/elgg', 'questions/css');
 	elgg_extend_view('js/elgg', 'questions/js');
 
-	elgg_register_widget_type('questions', elgg_echo('questions'), elgg_echo('questions:widget:description'));
+	elgg_register_widget_type([
+		'id' => 'questions',
+		'context' => ['profile', 'dashboard'],
+	]);
 
 	// Register for notifications
 	elgg_register_notification_event('object', 'questions', array('create'));
