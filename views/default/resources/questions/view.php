@@ -10,7 +10,7 @@ $page_owner = elgg_get_page_owner_entity();
 
 $crumbs_title = $page_owner->name;
 
-if (elgg_instanceof($page_owner, 'group')) {
+if ($page_owner instanceof ElggGroup) {
 	elgg_push_breadcrumb($crumbs_title, "bookmarks/group/$page_owner->guid/all");
 } else {
 	elgg_push_breadcrumb($crumbs_title, "bookmarks/owner/$page_owner->username");

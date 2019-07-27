@@ -3,7 +3,7 @@ elgg_gatekeeper();
 $questions_guid = elgg_extract('guid', $vars);
 $questions = get_entity($questions_guid);
 
-if (!elgg_instanceof($questions, 'object', 'questions') || !$questions->canEdit()) {
+if ($questions->getSubtype != 'questions' || !$questions->canEdit()) {
 	register_error(elgg_echo('questions:unknown_questions'));
 	forward(REFERRER);
 }

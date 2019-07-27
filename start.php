@@ -30,15 +30,20 @@ function questions_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'questions_answers_entity_menu_setup');
 }
 
-function questions_url($entity) {
+function questions_url(\Elgg\Hook $hook) {
+	$entity = $hook->getEntityParam();
+	
 	global $CONFIG;
 	$title = $entity->title;
 	$title = elgg_get_friendly_title($title);
 	return $CONFIG->url . "questions/view/" . $entity->getGUID() . "/" . $title;
 }
 
-function questions_owner_block_menu($hook, $type, $return, $params) {
-	if (elgg_instanceof($params['entity'], 'user')) {
+function questions_owner_block_menu(\Elgg\Hook $hook) {
+	$return = $hook->getValue();
+	$params = $hook->getParams();
+		
+	if ($params['entity'] instanceof ElggUser) {
 		$url = "questions/owner/{$params['entity']->username}";
 		$item = new ElggMenuItem('questions', elgg_echo('questions'), $url);
 		$return[] = $item;
@@ -53,7 +58,10 @@ function questions_owner_block_menu($hook, $type, $return, $params) {
 	return $return;
 }
 
-function questions_prepare_notification($hook, $type, $notification, $params) {
+function questions_prepare_notification(\Elgg\Hook $hook) {
+	$notification = $hook->getValue();
+	$params = $hook->getParams();
+		
 	$entity = $params['event']->getObject();
 	$owner = $params['event']->getActor();
 	$recipient = $params['recipient'];
@@ -82,8 +90,10 @@ function questions_profile_fields(){
 	);
 }
 
-function questions_answers_entity_menu_setup($hook, $type, $return, $params) {
-	$answer = $params['entity'];
+function questions_answers_entity_menu_setup(\Elgg\Hook $hook) {
+	$return = $hook->getValue();
+		
+	$answer = $hook->getEntityParam();
 	$answer_guid = $answer->guid;
 
 	$question = $answer->getContainerEntity();
