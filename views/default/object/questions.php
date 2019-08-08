@@ -1,7 +1,7 @@
 <?php
 
-$full = elgg_extract('full_view', $vars, FALSE);
-$questions = elgg_extract('entity', $vars, FALSE);
+$full = elgg_extract('full_view', $vars, false);
+$questions = elgg_extract('entity', $vars, false);
 
 if (!$questions) {
 	return;
@@ -10,32 +10,32 @@ if (!$questions) {
 $owner = $questions->getOwnerEntity();
 $owner_icon = elgg_view_entity_icon($owner, 'tiny');
 
-$link = elgg_view('output/url', array('href' => $questions->address));
-$description = elgg_view('output/longtext', array('value' => $questions->description, 'class' => 'pbl'));
+$link = elgg_view('output/url', ['href' => $questions->address]);
+$description = elgg_view('output/longtext', ['value' => $questions->description, 'class' => 'pbl']);
 
-$owner_link = elgg_view('output/url', array(
+$owner_link = elgg_view('output/url', [
 	'href' => $owner->getURL(),
 	'text' => $owner->name,
 	'is_trusted' => true,
-));
-$author_text = elgg_echo('byline', array($owner_link));
+]);
+$author_text = elgg_echo('byline', [$owner_link]);
 
 $date = elgg_view_friendly_time($questions->time_created);
 
 $comments_count = $questions->countComments();
 $text = elgg_echo("questions:answers") . " ($comments_count)";
-$comments_link = elgg_view('output/url', array(
+$comments_link = elgg_view('output/url', [
 	'href' => $questions->getURL() . '#comments',
 	'text' => $text,
 	'is_trusted' => true,
-));
+]);
 
-$metadata = elgg_view_menu('entity', array(
+$metadata = elgg_view_menu('entity', [
 	'entity' => elgg_extract('entity', $vars),
 	'handler' => elgg_extract('handler', $vars),
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
-));
+]);
 
 $subtitle = "$author_text $date $comments_link";
 
@@ -45,13 +45,12 @@ if (elgg_in_context('widgets')) {
 }
 
 if ($full && !elgg_in_context('gallery')) {
-
-	$params = array(
+	$params = [
 		'entity' => $questions,
 		'title' => false,
 		'metadata' => $metadata,
 		'subtitle' => $subtitle,
-	);
+	];
 	$params = $params + $vars;
 	$summary = elgg_view('object/elements/summary', $params);
 
@@ -61,8 +60,8 @@ if ($full && !elgg_in_context('gallery')) {
 </div>
 HTML;
 
-	$answer = elgg_get_entities(array('type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $questions->guid, 'inverse_relationship' => TRUE));
-	if($answer){
+	$answer = elgg_get_entities(['type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $questions->guid, 'inverse_relationship' => true]);
+	if ($answer) {
 		$answer_entity = elgg_view_entity($answer[0]);
 		$header = elgg_echo('questions:acceptedanswer');
 		$body .= "	<div class='questions elgg-content mts selected-answer'>
@@ -71,13 +70,12 @@ HTML;
 					</div>";
 	}
 
-	echo elgg_view('object/elements/full', array(
+	echo elgg_view('object/elements/full', [
 		'entity' => $questions,
 		'icon' => $owner_icon,
 		'summary' => $summary,
 		'body' => $body,
-	));
-
+	]);
 } elseif (elgg_in_context('gallery')) {
 	echo <<<HTML
 <div class="questions-gallery-item">
@@ -89,12 +87,12 @@ HTML;
 	// brief view
 	$excerpt = elgg_get_excerpt($questions->description);
 
-	$params = array(
+	$params = [
 		'entity' => $questions,
 		'metadata' => $metadata,
 		'subtitle' => $subtitle,
 		'content' => $excerpt,
-	);
+	];
 	$params = $params + $vars;
 	$body = elgg_view('object/elements/summary', $params);
 

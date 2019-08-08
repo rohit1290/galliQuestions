@@ -12,7 +12,7 @@ elgg_register_title_button();
 
 $title = elgg_echo('questions:friends');
 
-$content = elgg_list_entities(array(
+$content = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => 'questions',
 	'full_view' => false,
@@ -20,13 +20,13 @@ $content = elgg_list_entities(array(
 	'relationship_guid' => $page_owner->guid,
 	'relationship_join_on' => 'container_guid',
 	'no_results' => elgg_echo('questions:none'),
-));
+]);
 
-$params = array(
+$params = [
 	'filter_context' => 'friends',
 	'content' => $content,
 	'title' => $title,
-);
+];
 
 $body = elgg_view_layout('content', $params);
 

@@ -12,7 +12,8 @@ elgg_group_gatekeeper();
 
 $crumbs_title = $page_owner->name;
 
-if ($page_owner instanceof ElggGroup)) {
+if ($page_owner instanceof ElggGroup) {
+	)
 	elgg_push_breadcrumb($crumbs_title, "bookmarks/group/$page_owner->guid/all");
 } else {
 	elgg_push_breadcrumb($crumbs_title, "bookmarks/owner/$page_owner->username");
@@ -22,13 +23,13 @@ $title = $questions->title;
 
 elgg_push_breadcrumb($title);
 
-$content = elgg_view_entity($questions, array('full_view' => true));
+$content = elgg_view_entity($questions, ['full_view' => true]);
 $content .= elgg_view_comments($questions);
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('content', [
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',
-));
+]);
 
 echo elgg_view_page($title, $body);

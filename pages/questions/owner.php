@@ -9,7 +9,7 @@ elgg_push_breadcrumb($page_owner->name);
 
 elgg_register_title_button();
 
-$content .= elgg_list_entities(array(
+$content .= elgg_list_entities([
 	'type' => 'object',
 	'subtype' => 'questions',
 	'container_guid' => $page_owner->guid,
@@ -17,21 +17,21 @@ $content .= elgg_list_entities(array(
 	'full_view' => false,
 	'view_toggle_type' => false,
 	'no_results' => elgg_echo('questions:none'),
-));
+]);
 
-$title = elgg_echo('questions:owner', array($page_owner->name));
+$title = elgg_echo('questions:owner', [$page_owner->name]);
 
 $filter_context = '';
 if ($page_owner->getGUID() == elgg_get_logged_in_user_guid()) {
 	$filter_context = 'mine';
 }
 
-$vars = array(
+$vars = [
 	'filter_context' => $filter_context,
 	'content' => $content,
 	'title' => $title,
 	'sidebar' => elgg_view('questions/sidebar'),
-);
+];
 
 // don't show filter if out of filter context
 if ($page_owner instanceof ElggGroup) {

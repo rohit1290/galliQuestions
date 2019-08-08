@@ -16,7 +16,7 @@ function questions_init() {
 	]);
 
 	// Register for notifications
-	elgg_register_notification_event('object', 'questions', array('create'));
+	elgg_register_notification_event('object', 'questions', ['create']);
 	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:questions', 'questions_prepare_notification');
 
 	elgg_register_plugin_hook_handler('entity:url', 'questions', 'questions_url');
@@ -24,7 +24,7 @@ function questions_init() {
 	elgg_register_entity_type('object', 'questions');
 
 	elgg()->group_tools->register('questions', [
-	        'label' => elgg_echo('questions:enablequestions'),
+			'label' => elgg_echo('questions:enablequestions'),
 	]);
 
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'questions_answers_entity_menu_setup');
@@ -71,23 +71,23 @@ function questions_prepare_notification(\Elgg\Hook $hook) {
 	$descr = $entity->description;
 	$title = $entity->title;
 
-	$notification->subject = elgg_echo('questions:notify:subject', array($title), $language);
-	$notification->body = elgg_echo('questions:notify:body', array(
+	$notification->subject = elgg_echo('questions:notify:subject', [$title], $language);
+	$notification->body = elgg_echo('questions:notify:body', [
 		$owner->name,
 		$title,
 		$descr,
 		$entity->getURL()
-	), $language);
-	$notification->summary = elgg_echo('questions:notify:summary', array($entity->title), $language);
+	], $language);
+	$notification->summary = elgg_echo('questions:notify:summary', [$entity->title], $language);
 
 	return $notification;
 }
 
-function questions_profile_fields(){
-	return array(
-		array( 'name' => 'title',			'type' => 'text',		'value' => ''),
-		array( 'name' => 'description', 	'type' => 'longtext', 	'value' => ''),
-	);
+function questions_profile_fields() {
+	return [
+		[ 'name' => 'title',			'type' => 'text',		'value' => ''],
+		[ 'name' => 'description', 	'type' => 'longtext', 	'value' => ''],
+	];
 }
 
 function questions_answers_entity_menu_setup(\Elgg\Hook $hook) {
@@ -100,7 +100,7 @@ function questions_answers_entity_menu_setup(\Elgg\Hook $hook) {
 	$question_guid = $question->guid;
 
 	// Only for questions
-	if($question){
+	if ($question) {
 		$subtype = $question->getSubtype();
 		if ($subtype != 'questions') {
 			return $return;
@@ -114,27 +114,27 @@ function questions_answers_entity_menu_setup(\Elgg\Hook $hook) {
 		return $return;
 	}
 
-	if($question->canEdit()){
+	if ($question->canEdit()) {
 		// Already marked this post as the answer?
-		if(check_entity_relationship($answer_guid, 'is_answer_of', $question_guid)){
+		if (check_entity_relationship($answer_guid, 'is_answer_of', $question_guid)) {
 			$text = elgg_echo('questions:unmark');
 			$href = "action/questions/mark?todo=unmark&guid=$answer_guid";
 		} else {
-			$answer = elgg_get_entities(array('type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $question->guid, 'inverse_relationship' => TRUE));
-			if(!$answer){
+			$answer = elgg_get_entities(['type' => 'object', 'relationship' => 'is_answer_of', 'relationship_guid' => $question->guid, 'inverse_relationship' => true]);
+			if (!$answer) {
 				$text = elgg_echo('questions:mark');
 				$href = "action/questions/mark?todo=mark&guid=$answer_guid";
 			}
 		}
-		if($text & $href){
-			$options = array(
+		if ($text & $href) {
+			$options = [
 				'name' => 'mark-answers',
 				'text' => $text,
 				'href' => $href,
 				'class' => $class,
 				'priority' => 150,
 				'is_action' => true,
-			);
+			];
 			$return[] = ElggMenuItem::factory($options);
 		}
 	}

@@ -8,15 +8,15 @@ $question_guid = $question->guid;
 
 $todo = get_input('todo');
 
-if($answer && $question && $todo){
-	if($todo == 'mark'){
-		if(add_entity_relationship($answer_guid, 'is_answer_of', $question_guid)){
+if ($answer && $question && $todo) {
+	if ($todo == 'mark') {
+		if (add_entity_relationship($answer_guid, 'is_answer_of', $question_guid)) {
 			system_message(elgg_echo('questions:marksticky:success'));
 			forward(REFERER);
 		}
 	}
-	if($todo == 'unmark'){
-		if(remove_entity_relationship($answer_guid, 'is_answer_of', $question_guid)){
+	if ($todo == 'unmark') {
+		if (remove_entity_relationship($answer_guid, 'is_answer_of', $question_guid)) {
 			system_message(elgg_echo('questions:unmarksticky:success'));
 			forward(REFERER);
 		}
