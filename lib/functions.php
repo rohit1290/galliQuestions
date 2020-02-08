@@ -1,38 +1,8 @@
 <?php
-elgg_register_event_handler('init', 'system', 'questions_init');
-
-function questions_init() {
-
-	require_once __DIR__ ."/lib/questions.php";
-
-	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'questions_owner_block_menu');
-
-	elgg_extend_view('css/elgg', 'questions/css');
-	elgg_extend_view('js/elgg', 'questions/js');
-
-	elgg_register_widget_type([
-		'id' => 'questions',
-		'context' => ['profile', 'dashboard'],
-	]);
-
-	// Register for notifications
-	elgg_register_notification_event('object', 'questions', ['create']);
-	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:questions', 'questions_prepare_notification');
-
-	elgg_register_plugin_hook_handler('entity:url', 'questions', 'questions_url');
-
-	elgg_register_entity_type('object', 'questions');
-
-	elgg()->group_tools->register('questions', [
-			'label' => elgg_echo('questions:enablequestions'),
-	]);
-
-	elgg_register_plugin_hook_handler('register', 'menu:entity', 'questions_answers_entity_menu_setup');
-}
 
 function questions_url(\Elgg\Hook $hook) {
 	$entity = $hook->getEntityParam();
-	
+
 	global $CONFIG;
 	$title = $entity->title;
 	$title = elgg_get_friendly_title($title);
@@ -42,7 +12,7 @@ function questions_url(\Elgg\Hook $hook) {
 function questions_owner_block_menu(\Elgg\Hook $hook) {
 	$return = $hook->getValue();
 	$params = $hook->getParams();
-		
+
 	if ($params['entity'] instanceof ElggUser) {
 		$url = "questions/owner/{$params['entity']->username}";
 		$item = new ElggMenuItem('questions', elgg_echo('questions'), $url);
@@ -61,7 +31,7 @@ function questions_owner_block_menu(\Elgg\Hook $hook) {
 function questions_prepare_notification(\Elgg\Hook $hook) {
 	$notification = $hook->getValue();
 	$params = $hook->getParams();
-		
+
 	$entity = $params['event']->getObject();
 	$owner = $params['event']->getActor();
 	$recipient = $params['recipient'];
@@ -92,7 +62,7 @@ function questions_profile_fields() {
 
 function questions_answers_entity_menu_setup(\Elgg\Hook $hook) {
 	$return = $hook->getValue();
-		
+
 	$answer = $hook->getEntityParam();
 	$answer_guid = $answer->guid;
 

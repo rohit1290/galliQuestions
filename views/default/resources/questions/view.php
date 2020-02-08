@@ -23,7 +23,7 @@ elgg_push_breadcrumb($title);
 $content = elgg_view_entity($questions, ['full_view' => true]);
 // $content .= elgg_view_comments($questions);
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('default', [
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',

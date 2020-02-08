@@ -38,6 +38,6 @@ if ($page_owner instanceof ElggGroup) {
 	$vars['filter'] = false;
 }
 
-$body = elgg_view_layout('content', $vars);
+$body = elgg_view_layout('default', $vars);
 
 echo elgg_view_page($title, $body);

@@ -17,7 +17,7 @@ elgg_push_breadcrumb($title);
 $vars = questions_prepare_form_vars($questions);
 $content = elgg_view_form('questions/save', [], $vars);
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('default', [
 	'filter' => '',
 	'content' => $content,
 	'title' => $title,

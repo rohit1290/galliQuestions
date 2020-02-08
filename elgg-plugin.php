@@ -1,6 +1,9 @@
 <?php
+require_once __DIR__ ."/lib/questions.php";
+require_once __DIR__ ."/lib/functions.php";
 
 return [
+	'bootstrap' => galliQuestions::class,
 	'actions' => [
 		'questions/save' => [],
 		'questions/delete' => [],

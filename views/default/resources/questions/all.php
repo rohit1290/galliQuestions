@@ -16,7 +16,7 @@ $content = elgg_list_entities([
 
 $title = elgg_echo('questions:everyone');
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('default', [
 	'filter_context' => 'all',
 	'content' => $content,
 	'title' => $title,
