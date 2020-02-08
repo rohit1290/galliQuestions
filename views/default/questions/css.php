@@ -8,5 +8,5 @@
 .selected-answer {
 	border-top:1px solid #dedede;
 	border-bottom:1px solid #dedede;
-	padding:10px 0; 
+	padding:10px 0;
 }

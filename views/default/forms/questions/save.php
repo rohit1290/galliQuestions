@@ -19,7 +19,7 @@ if ($fields) {
 	}
 }
 ?>
-	
+
 <div>
 	<label><?php echo elgg_echo('access'); ?></label><br />
 	<?php echo elgg_view('input/access', ['name' => 'access_id', 'value' => $access_id]); ?>
